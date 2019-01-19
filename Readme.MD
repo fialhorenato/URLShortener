@@ -37,7 +37,6 @@ This project was tested on Eclipse 12-2018 and on IntelliJ IDEA Community Editio
     | CONTAINER_ID 	| IMAGE                                	| COMMAND                	| CREATED        	| STATUS        	| PORTS                  	| NAMES                                   	|
     |--------------	|--------------------------------------	|------------------------	|----------------	|---------------	|------------------------	|-----------------------------------------	|
     | acc11e7869aa 	| renatofialho/testurlshortener:latest 	| "java -Dspring.profi…" 	| 18 minutes ago 	| Up 18 minutes 	| 0.0.0.0:8080->8080/tcp 	| urlshortener_url-shortener_1            	|
-    | b613880607c3 	| postgres:latest                      	| "docker-entrypoint.s…" 	| 24 minutes ago 	| Up 24 minutes 	| 0.0.0.0:5432->5432/tcp 	| urlshortener_url-shortener-postgresql_1 	|
     
   - To check the containers running, use ``docker ps`` , then you will get something such as
     Then to check the log of the system you need to run ``docker logs -f <CONTAINER_ID>``, in this case ``docker logs -f ``
