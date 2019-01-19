@@ -1,15 +1,11 @@
 package com.urlshortener.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Reference;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,26 +15,20 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
+@RedisHash("UrlClick")
 public class UrlClick {
 	
-	@Id
-	@Column(name = "URL_CLICK_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	Long id;
 	
-	@Column(name="DATE_CLICK")
+	@JsonIgnore @Id Long id;
+	
 	@NonNull private LocalDateTime date;
 	
-	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY)
-	@NonNull private UrlModel urlModel;
+	@JsonIgnore @Indexed @Reference @NonNull private UrlModel urlModel;
 	
-	@Column(name="IP")
 	@NonNull private String ip;
 	
 

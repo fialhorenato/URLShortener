@@ -3,15 +3,12 @@ services:
   url-shortener:
     image: renatofialho/testurlshortener:latest
     environment:
-      - POSTGRES_JDBC_URL=jdbc:postgresql://url-shortener-postgresql:5432/urlshortener
+      - REDIS_HOSTNAME=url-shortener-redis
+      - REDIS_PORT=6379
     depends_on:
-      - "url-shortener-postgresql"
+      - "url-shortener-redis"
     ports:
       - 8080:8080
-  url-shortener-postgresql:
-    image: postgres:latest
-    environment:
-      - POSTGRES_USER=urlshortener
-      - POSTGRES_PASSWORD=urlshortener
-    ports:
-      - 5432:5432
+  url-shortener-redis:
+    image: redis:latest
+    

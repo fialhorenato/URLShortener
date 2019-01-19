@@ -4,17 +4,18 @@ This project is based on the requisites listed on this [Gist](https://gist.githu
 
 ## Introduction
 
-This project is developed using Java 8, Spring Boot, Maven, Docker and Docker-Compose.
+This project is developed using Java 8, Spring Boot, Redis, Maven, Docker and Docker-Compose.
 
 The project is using the default ``8080`` port on Spring.
 
 It comes with a embbed Maven that can be used by typing ``./mvnw``
 
+I created a docker-compose for developers to spin-up some dependencies, such as ``redis``, and to run it, you need to run ``docker-compose -f docker-compose-dev.yml up -d`` and you need the port ``6379`` open in your machine.
+
 I created 2 different Maven and Spring Profiles : ``prod`` and ``dev``:
 
-- ``dev`` profile uses H2 as database, since is a in-memory database and doesn't need anything installed with.
-- ``prod`` profile uses PostgreSQL as database, and i'm spinning up a PostgreSQL Server when launch using Docker.
-- To run the docker-compose, you'll need to have the ports ``8080`` and ``5432`` not being used, if you want to change the mapping, edit the ``docker-compose.yml`` file , attribute ``<PORT_OF_YOUR_CHOICE>:5432`` on ports.
+- ``dev`` profile connects to a redis instance running on localhost, since is a in-memory database and doesn't need anything installed with.
+- ``prod`` profile connects to the postgres that i started in docker. I'm only forwarding the port 8080, so if you want to change the mapping, edit the ``docker-compose.yml`` file , attribute ``<PORT_OF_YOUR_CHOICE>:8080`` on ports.
   
 
 ## IDE's
@@ -23,8 +24,8 @@ This project was tested on Eclipse 12-2018 and on IntelliJ IDEA Community Editio
 
 ## Useful commands
 
-- ``./mvnw spring-boot:run -Pdev``
-  - Spin up the project using the H2 database, when you shutdown the system, the database is dropped.
+- ``docker-compose -f docker-compose-dev.yml up -d && ./mvnw spring-boot:run -Pdev``
+  - Spin up the project using the redis server.
 
 - ``./mvnw clean package docker:build``
   - This build cleans the target folder, re-creates it and build the docker image using the ``Dockerfile`` under ``src/main/Docker`` , for that, you need to have ``Docker`` installed and running in your machine.

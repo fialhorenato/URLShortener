@@ -5,6 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 import com.urlshortener.model.UrlModel;
 
 
-public interface UrlRepository extends CrudRepository<UrlModel, String> {
-
-}
+public interface UrlRepository extends CrudRepository<UrlModel, String> {}
