@@ -3,6 +3,7 @@ package com.urlshortener.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,6 +44,8 @@ public class UrlController {
 		if (urlModel.isPresent() && UrlUtils.isUrlValid(urlModel.get().getUrl())) {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setLocation(UrlUtils.getURIFromUrl(urlModel.get().getUrl()));
+			// NEED NO CACHE CONTROL FOR THE STATISTICS, IT CANNOT CACHE THE REQUEST TO COUNT THE HITS
+			headers.setCacheControl(CacheControl.noCache());
 			return new ResponseEntity<>(headers, HttpStatus.PERMANENT_REDIRECT);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

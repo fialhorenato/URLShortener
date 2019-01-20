@@ -17,7 +17,7 @@ I created 2 different Maven and Spring Profiles : ``prod`` and ``dev``:
 - ``dev`` profile connects to a redis instance running on localhost, since is a in-memory database and doesn't need anything installed with.
 - ``prod`` profile connects to the postgres that i started in docker. I'm only forwarding the port 8080, so if you want to change the mapping, edit the ``docker-compose.yml`` file , attribute ``<PORT_OF_YOUR_CHOICE>:8080`` on ports.
   
-
+This project was tested on ``Google Chrome`` and ``Safari``
 ## IDE's
 
 This project was tested on Eclipse 12-2018 and on IntelliJ IDEA Community Edition.
@@ -71,6 +71,19 @@ I created a collection to test the API using Postman, the collection is named as
 
 There's a documentation using Postman on this [link](https://documenter.getpostman.com/view/2904938/RzteSCZJ) , you can use as a reference.
 
+
+## Premises / Improvements
+
+For the statistics, i've faced some issues with the web browsers, related below:
+
+### Google Chrome
+
+- Google chrome by default send a GET request when you type in the address, and caches that request, i tried to manage using Cache Control.
+
+### Safari
+
+- It's the same as google, but sends 2 requests, 1 when you type the address, and one when you hit enter, i'm saving those hits twice.
+- 
 ## LICENSE
 
 This project is licensed under the ``Apache License 2.0``, check the LICENSE file for questions or doubts.
