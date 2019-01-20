@@ -60,8 +60,47 @@ The response will be something such as
     "url": "http://www.google.com",
 }
 ```
+
+### Get the URL you created
+
 To go to the shortened URL, you must go to http://yourserverurl:8080/<ID> (http://localhost:8080/750f83372b846d48b7cfdddcc734fb3c)
 
+
+### Get all clicks for a URL
+
+To get all the clicks (HITS) you need to send a ``GET`` request to http://yourserverurl:8080/statistics/all/<ID_OF_YOUR_URL> (http://localhost:8080/)
+
+The response will be something such as 
+
+```json
+[
+    {
+        "date": "2019-01-19T22:12:20.743",
+        "ip": "0:0:0:0:0:0:0:1"
+    },
+    {
+        "date": "2019-01-19T22:10:12.616",
+        "ip": "0:0:0:0:0:0:0:1"
+    }
+]
+```
+
+### Get number of clicks for a URL
+
+To get a count of all the clicks you need to send a ``GET`` request to http://yourserverurl:8080/statistics/<ID_OF_YOUR_URL> (http://localhost:8080/)
+
+```json
+[
+    {
+        "date": "2019-01-19T22:12:20.743",
+        "ip": "0:0:0:0:0:0:0:1"
+    },
+    {
+        "date": "2019-01-19T22:10:12.616",
+        "ip": "0:0:0:0:0:0:0:1"
+    }
+]
+```
 
 ## Postman
 
