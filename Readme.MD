@@ -41,6 +41,31 @@ This project was tested on Eclipse 12-2018 and on IntelliJ IDEA Community Editio
   - To check the containers running, use ``docker ps`` , then you will get something such as
     Then to check the log of the system you need to run ``docker logs -f <CONTAINER_ID>``, in this case ``docker logs -f ``
 
+## API Endpoints
+
+### Create a url
+
+To create a URL shortener, you need to send a ``POST`` request to http://yourserverurl:8080/ (http://localhost:8080/)
+
+```json
+{
+  "url" : "https://www.google.com"
+}
+```
+
+The response will be something such as 
+```json
+{
+    "id": "750f83372b846d48b7cfdddcc734fb3c",
+    "url": "http://www.google.com",
+}
+```
+To go to the shortened URL, you must go to http://yourserverurl:8080/<ID> (http://localhost:8080/750f83372b846d48b7cfdddcc734fb3c)
+
+
+## Postman
+
+I created a collection to test the API using Postman, the collection is named as ``Collection.postman_collection.json`` in the root of this project, you need to import it on Postman to test.
 
 ## API Documentation
 

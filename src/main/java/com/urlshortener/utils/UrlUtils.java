@@ -33,7 +33,7 @@ public class UrlUtils {
 	}
 
 	public static String createHashFromUrl(String url) {
-		return Hashing.murmur3_128().hashString(url, StandardCharsets.UTF_8).toString();
+		return Hashing.murmur3_32().hashString(url, StandardCharsets.UTF_8).toString();
 	}
 
 	public static URI getURIFromUrl(String url) {
